@@ -1,3 +1,20 @@
+// Get Json data from csv_file table
+var patientTimelines = new Array();
+
+$.ajax({
+		type: "GET",
+		url: "/analysis/getPatientTimelines",
+		async: false,
+		success : function(text)
+		{
+			patientTimelines = text.data;
+		}
+	});
+	
+console.log(patientTimelines);
+	
+var go_button = $("#queryDrug"); // Go button ID
+	
 $(document).ready(function () {
 
     var CColorSet = ['rgba(255, 48, 48, 1)','rgba(255, 127, 36, 1)','rgba(255, 165, 0, 1)','rgba(178, 34, 34, 1)'];
@@ -14,7 +31,7 @@ $(document).ready(function () {
 
 
     
-    dataVisualization = function(response,selecteddrugs) {
+    dataVisualization = function(selecteddrugs) {
 
         //handle the logic of the single graph
 
@@ -304,36 +321,7 @@ $(document).ready(function () {
     var drug = new Map();
     var type;
 
-    for (r in response){
-
-        // logic to find out whether the drug is continuous infusion or not.
-        type = ((response[r].doseUnit).indexOf("/") > -1) ? 'Continuous':'Intermittent';
-
-        if(drug.has(response[r].drugName)){
-            data = drug.get(response[r].drugName)
-
-            // skip the redundant points for continuous infusion
-            if (data[0].type == 'Continuous' && response[r].infusedVol != 0){continue;}
-
-            data.push({
-                chartDate: response[r].chartDate,
-                dose: response[r].dose,
-                unit:response[r].doseUnit,
-                type: type,
-                route: response[r].route
-            });
-            drug.set(response[r].drugName ,data);
-        }
-        else{
-            drug.set(response[r].drugName ,[{
-                chartDate: response[r].chartDate,
-                dose: response[r].dose,
-                unit:response[r].doseUnit,
-                type:type,
-                route: response[r].route
-            }])
-        }
-    }
+ 
 
 
     var columnData = Array.from(drug.keys());
@@ -383,6 +371,6 @@ $(document).ready(function () {
             }
         }
         console.log(selectedDrugs);
-        dataVisualization(response,Array.from(selectedDrugs));
+        dataVisualization(Array.from(selectedDrugs));
     });
 });
