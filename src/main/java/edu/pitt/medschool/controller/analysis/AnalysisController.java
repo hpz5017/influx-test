@@ -122,6 +122,14 @@ public class AnalysisController {
         model.addAttribute("subnav", "chart");
         return model;
     }
+    
+    @RequestMapping("analysis/aggregationExplorer")
+    @ResponseBody
+    public Model aggregationExplorerPage(Model model) {
+        model.addAttribute("nav", "management");
+        model.addAttribute("subnav", "aggchart");
+        return model;
+    }
 
     @RequestMapping("analysis/visualizepatient")
     @ResponseBody
