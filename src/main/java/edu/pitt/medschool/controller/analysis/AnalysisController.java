@@ -1,6 +1,7 @@
 package edu.pitt.medschool.controller.analysis;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -129,6 +130,14 @@ public class AnalysisController {
         model.addAttribute("nav", "management");
         model.addAttribute("subnav", "aggchart");
         return model;
+    }
+    
+    @RequestMapping("service/getData")
+    @ResponseBody
+    public RestfulResponse getData(Model model) throws FileNotFoundException {
+        RestfulResponse response = new RestfulResponse(1,"success");
+        response.setData(GetAggregationDataFromCSV.main());
+        return response;
     }
 
     @RequestMapping("analysis/visualizepatient")

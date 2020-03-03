@@ -220,9 +220,12 @@ $(document).ready(function () {
             Array.prototype.push.apply(allDatasets,datasets);
             Array.prototype.push.apply(allYAxes,yAxes);
         }
+        
+        console.log(allYAxes);
 
         $("#saveMedInfo").data('route',medInfo);  // Save medInfo of route
 
+        console.log();
 
         if($('#myChart').length > 0){
             allGraph.data.datasets = allDatasets;
