@@ -11,10 +11,10 @@ $.ajax({
 			patientTimelines = text.data;
 		}
 	});
-	*/
+*/
+
 
 //console.log(patientTimelines);
-
 //get two arrays from GetAggregationDataFromCSV(time points and feature values)
 $.ajax({
 	type: "GET",
@@ -63,7 +63,7 @@ function agg_30s_mean(data,max)
 	//this var should be set to temp_sum at each agg point
 	var temp_sum_n = 0;
 	
-	var x =0;
+	var x =0;         
 	
 	for(i = 0; i < max;i++)
 	{
@@ -106,7 +106,6 @@ function agg_60s_mean(data,max)
 		  temp_sum_n = temp_sum + 2;
 		  aggregated_arr.push(temp_sum/60 + 2);
 		  temp_sum = 0;
-		   
 	   }
 	   else
 	   {
@@ -151,13 +150,11 @@ function agg_900s_mean(data,max)
 
 }
 
-
-
 var thirty_agg_data = agg_30s_mean(value,length);
 var sixty_agg_data = agg_60s_mean(value,length);
 var nine_hundred_agg_data = agg_900s_mean(value,length);
-
 */
+
 
 
 
@@ -192,7 +189,8 @@ datasets.push({
 
 
 //aggregation level
-var yLabels = {
+var yLabels = 
+    {
 	    0 : '30s', 2 : '60s', 4: '2min'
 	}
 

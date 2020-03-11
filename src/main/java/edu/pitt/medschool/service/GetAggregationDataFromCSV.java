@@ -11,8 +11,6 @@ import java.lang.Integer;
 import java.io.*;
 
 
-
-@Service
 public class GetAggregationDataFromCSV
 {	
     public static List<String> init(String path) {
@@ -159,7 +157,7 @@ public class GetAggregationDataFromCSV
     }
     
     public static result main() throws FileNotFoundException {
-        List<String> result = GetAggregationDataFromCSV.init("C:\\Users\\zhong\\Downloads\\PUH-2018-300_01ar.csv");
+        List<String> result = GetAggregationDataFromCSV.init("/Users/haohanzhong/Downloads/PUH-2013-153_01noar.csv");
         int length = result.size() + 1;
         //array holds time values
         int[] time = new int[length];
