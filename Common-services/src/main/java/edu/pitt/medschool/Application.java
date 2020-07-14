@@ -19,11 +19,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import edu.pitt.medschool.framework.util.TimeUtil;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+@EnableDiscoveryClient
 @SpringBootApplication
 public class Application implements ApplicationRunner {
-//    @Autowired
-//    AutoImportService autoImportService;
     @Autowired
     AggregationService aggregationService;
 
@@ -64,6 +64,6 @@ public class Application implements ApplicationRunner {
                 logger.error(Util.stackTraceErrorToString(se));
             }
         }
-//        autoImportService.initImport();
+
     }
 }
